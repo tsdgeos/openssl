@@ -62,6 +62,7 @@ int DSA_generate_parameters_ex(DSA *dsa, int bits,
         if (!ossl_dsa_generate_ffc_parameters(dsa, DSA_PARAMGEN_TYPE_FIPS_186_2,
                                               bits, 160, cb))
             return 0;
+        ossl_ffc_params_enable_flags(&dsa->params, FFC_PARAM_FLAG_VALIDATE_LEGACY, 1);
     } else {
         if (!ossl_dsa_generate_ffc_parameters(dsa, DSA_PARAMGEN_TYPE_FIPS_186_4,
                                               bits, 0, cb))
